@@ -1,0 +1,18 @@
+type Query {
+    getPizzas: [Pizza]
+}
+
+type Mutation {
+    createPizza(pizzaInput: PizzaInput!): Pizza
+}
+
+type Pizza {
+    id: ID!
+    name: String!
+    ingredients: [String]
+}
+
+input PizzaInput {
+    name: String!
+    ingredients: [String]!
+}
