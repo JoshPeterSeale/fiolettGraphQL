@@ -1,5 +1,6 @@
 type Query {
     getPizzas: [Pizza]
+    getCalculation(pizzaCalculatorInput: PizzaCalculatorInput!): PizzaCalculatorOutput
 }
 
 type Mutation {
@@ -15,4 +16,19 @@ type Pizza {
 input PizzaInput {
     name: String!
     ingredients: [String]!
+}
+
+type PizzaCalculatorOutput {
+    totalMass: Int!
+    flour: Int!
+    water: Int!
+    salt: Int!
+    yeast: Int!
+}
+
+input PizzaCalculatorInput {
+    hydration: Float!
+    saltPercentage: Float!
+    doughMass: Int!
+    numberDoughBalls: Int!
 }
