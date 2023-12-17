@@ -4,37 +4,33 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import com.pizzaApp.pizzaBackEnd.menu.model.food.Ingredient;
 
 import java.util.List;
+
 @NoArgsConstructor
 @Getter
 @Setter
 @Entity
-@Table(name="pizza")
-public class Pizza {
+@Table(name="ingredients")
+public class Ingredient {
     @Id
     @GeneratedValue
     Integer id;
     String name;
-    List<String> ingredients;
-    float price;
+    Float cost;
     boolean glutenFree;
-    boolean vegeterian;
+    boolean vegetarian;
     boolean vegan;
 
-    public Pizza(String name, List<String> ingredients, float price, boolean glutenFree, boolean vegeterian, boolean vegan){
+    public Ingredient(String name, float cost, boolean glutenFree, boolean vegetarian, boolean vegan){
         this.name=name;
-        this.ingredients=ingredients;
-        this.price=price;
+        this.cost=cost;
         this.glutenFree=glutenFree;
-        this.vegeterian=vegeterian;
+        this.vegetarian=vegetarian;
         this.vegan=vegan;
     }
 }
-
-
-
