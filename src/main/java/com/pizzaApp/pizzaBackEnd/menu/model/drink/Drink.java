@@ -1,10 +1,7 @@
 package com.pizzaApp.pizzaBackEnd.menu.model.drink;
 
 import com.pizzaApp.pizzaBackEnd.menu.model.food.Ingredient;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -16,7 +13,7 @@ import lombok.Setter;
 @Table(name="drinks")
 public class Drink {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     Integer id;
     String name;
     Float cost;
@@ -29,6 +26,7 @@ public class Drink {
     public Drink(String name, float cost, boolean glutenFree, boolean vegetarian, boolean vegan, boolean alcoholic){
         this.name=name;
         this.cost=cost;
+        this.price=(float) (cost * 2.5);
         this.glutenFree=glutenFree;
         this.vegetarian=vegetarian;
         this.vegan=vegan;

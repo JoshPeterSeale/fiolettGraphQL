@@ -1,8 +1,16 @@
 type Query {
     getPizzas: [Pizza]
+    getPizzasByName(name: String!): [Pizza]
+    getPizzasByNameIn(names: [String]!): [Pizza]
+    getPizzasByIngredients(ingredients: [String]!): [Pizza]
     getCalculation(pizzaCalculatorInput: PizzaCalculatorInput!): PizzaCalculatorOutput
     getIngredients: [Ingredient]
+    getIngredientsByName(name: String): [Ingredient]
+    getIngredientsByVegetarian(vegetarian: Boolean!): [Ingredient]
+    getIngredientsByVegan(vegan: Boolean!): [Ingredient]
     getDrinks: [Drink]
+    getDrinkByName(name: String!): Drink
+    getDrinksByAlcoholic(alcoholic: Boolean!): [Drink]
 }
 
 type Mutation {
@@ -61,6 +69,25 @@ input DrinkInput {
     vegetarian: Boolean!
     vegan: Boolean!
     alcoholic: Boolean!
+}
+
+type Order {
+    id: Int
+    timestamp: String
+    customerName: String
+    pizzas: [String]
+    drinks: [String]
+    cost: Float
+    price: Float
+    alcoholic: Boolean
+    vegetarian: Boolean
+    vegan: Boolean
+}
+
+input OrderInput {
+    customerName: String!
+    pizzas: [String]
+    drinks: [String]
 }
 
 type PizzaCalculatorOutput {

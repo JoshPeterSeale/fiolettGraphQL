@@ -1,9 +1,6 @@
 package com.pizzaApp.pizzaBackEnd.menu.model.food;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,7 +15,7 @@ import java.util.List;
 @Table(name="ingredients")
 public class Ingredient {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     Integer id;
     String name;
     Float cost;
