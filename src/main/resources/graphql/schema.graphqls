@@ -11,12 +11,18 @@ type Query {
     getDrinks: [Drink]
     getDrinkByName(name: String!): Drink
     getDrinksByAlcoholic(alcoholic: Boolean!): [Drink]
+    getOrders: [Order]
+    getOrdersById: [Order]
+    getOrdersByCustomerName(name: String!): [Order]
+    getOrdersByCustomerNames(names: [String]!): [Order]
+
 }
 
 type Mutation {
     createIngredient(ingredientInput: IngredientInput!): Ingredient
     createPizza(pizzaInput: PizzaInput!): Pizza
     createDrink(drinkInput: DrinkInput!): Drink
+    createOrder(orderInput: OrderInput!): Order
 }
 
 type Pizza {

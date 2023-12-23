@@ -46,6 +46,23 @@ public class OrderController {
         return orderRepo.findAll();
     }
 
+    @QueryMapping
+    public Optional<Order> getOrdersById(int id) {
+        return orderRepo.findById(id);
+    }
+
+    @QueryMapping
+    public List<Order> getOrdersByCustomerName(@Argument String name) {
+        return orderRepo.findByCustomerName(name);
+    }
+
+    @QueryMapping
+    public List<Order> getOrdersByCustomerNames(@Argument List<String> names) {
+        return orderRepo.findByCustomerNameIn(names);
+    }
+
+
+
 
     @MutationMapping
     public Order createOrder(@Argument OrderInput orderInput) {
