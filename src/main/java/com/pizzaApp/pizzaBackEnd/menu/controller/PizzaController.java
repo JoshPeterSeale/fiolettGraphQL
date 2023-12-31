@@ -11,6 +11,7 @@ import org.springframework.graphql.data.method.annotation.QueryMapping;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicReference;
@@ -31,6 +32,16 @@ public class PizzaController {
     @QueryMapping
     public List<Pizza> getPizzas() {
         return pizzaRepo.findAll();
+    }
+
+    @QueryMapping
+    public List<Pizza> getPizzasByName(@Argument String name) {
+        return pizzaRepo.findByName(name);
+    }
+
+    @QueryMapping
+    public List<Pizza> getPizzasByNameIn(@Argument List<String> names) {
+        return pizzaRepo.findByNameIn(names);
     }
 
     @MutationMapping
@@ -55,17 +66,16 @@ public class PizzaController {
         };
 
         List<String> ingredientNames = pizzaInput.ingredients();
-        List<Ingredient> allIngredients = ingredientRepo.findAll();
-        allIngredients.stream()
-                .filter(e -> ingredientNames.contains(e.getName()))
+        List<Ingredient> listIngredients = ingredientRepo.findByNameIn(ingredientNames);
+        listIngredients.stream()
                 .forEach(consumer);
 
         boolean glutenFree = glutenFreeRef.get();
         boolean vegetarian = vegeterianRef.get();
         boolean vegan = veganRef.get();
-        double cost = costRef.get();
+        Float cost = costRef.get().floatValue();
         float price = (float) (Math.ceil(3*cost)-0.05);
 
-        return pizzaRepo.save(new Pizza(pizzaInput.name(),pizzaInput.ingredients(), price, glutenFree, vegetarian, vegan));
+        return pizzaRepo.save(new Pizza(pizzaInput.name(),pizzaInput.ingredients(), cost, price, glutenFree, vegetarian, vegan));
     }
 }

@@ -3,6 +3,7 @@ package com.pizzaApp.pizzaBackEnd.menu.controller;
 import com.pizzaApp.pizzaBackEnd.menu.model.drink.Drink;
 import com.pizzaApp.pizzaBackEnd.menu.model.drink.DrinkInput;
 import com.pizzaApp.pizzaBackEnd.menu.model.food.IngredientInput;
+import com.pizzaApp.pizzaBackEnd.menu.model.food.Pizza;
 import com.pizzaApp.pizzaBackEnd.menu.repository.DrinkRepo;
 import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.MutationMapping;
@@ -25,6 +26,21 @@ public class DrinkController {
     @QueryMapping
     public List<Drink> getDrinks() {
         return drinkRepo.findAll();
+    }
+
+    @QueryMapping
+    public List<Drink> getDrinkByName(@Argument String name) {
+        return drinkRepo.findByName(name);
+    }
+
+    @QueryMapping
+    public List<Drink> getDrinksByNames(@Argument List<String> names) {
+        return drinkRepo.findByNameIn(names);
+    }
+
+    @QueryMapping
+    public List<Drink> getDrinksByAlcoholic(@Argument Boolean alcoholic) {
+        return drinkRepo.findByAlcoholic(alcoholic);
     }
 
     @MutationMapping

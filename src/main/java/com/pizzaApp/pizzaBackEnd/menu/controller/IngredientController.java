@@ -27,6 +27,26 @@ public class IngredientController {
         return ingredientRepo.findAll();
     }
 
+    @QueryMapping
+    public List<Ingredient> getIngredientsByName(@Argument String name){
+        return ingredientRepo.findByName(name);
+    }
+
+    @QueryMapping
+    public List<Ingredient> getIngredientsByNames(@Argument List<String> names){
+        return ingredientRepo.findByNameIn(names);
+    }
+
+    @QueryMapping
+    public List<Ingredient> getIngredientsByVegetarian(@Argument Boolean vegetarian) {
+        return ingredientRepo.findByVegetarian(vegetarian);
+    }
+
+    @QueryMapping
+    public List<Ingredient> getIngredientsByVegan(@Argument Boolean vegan) {
+        return ingredientRepo.findByVegan(vegan);
+    }
+
     @MutationMapping
     public Ingredient createIngredient(@Argument IngredientInput ingredientInput){
         return ingredientRepo.save(new Ingredient(ingredientInput.name(), ingredientInput.cost(),
