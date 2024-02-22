@@ -15,6 +15,7 @@ public class Drink {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     Integer id;
+    @Column(unique = true)
     String name;
     Float cost;
     Float price;
