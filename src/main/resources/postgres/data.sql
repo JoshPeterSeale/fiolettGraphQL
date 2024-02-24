@@ -9,13 +9,6 @@ INSERT INTO ingredients(name, cost, gluten_free, vegetarian, vegan)
     ('Tomato', 0.40, 't', 't', 't'),
     ('Mozzarella', 0.75, 't', 't', 'f');
 
-
-INSERT INTO pizza(ingredients, name, price, cost, gluten_free, vegetarian, vegan)
-    VALUES
-        (ARRAY ['Tomato', 'Mozzarella', 'Salami', 'Pizza Dough'], 'Salami Pizza', 6.95, 2.15, 'f', 'f', 'f'),
-        (ARRAY ['Tomato', 'Mozzarella', 'Fennel Sausage', 'Caramelised Onion'], 'Fennel Sausage Pizza', 7.95, 2.40, 'f', 'f', 'f'),
-        (ARRAY ['Tomato', 'Mozzarella', 'Pepperoni', 'Pizza Dough'], 'Pepperoni Pizza', 6.95, 2.15, 'f', 'f', 'f');
-
 INSERT INTO drinks(alcoholic, cost, gluten_free, name, vegetarian, vegan)
     VALUES
     ('f', 1.00, 't', 'Coke', 't', 't'),
@@ -24,3 +17,8 @@ INSERT INTO drinks(alcoholic, cost, gluten_free, name, vegetarian, vegan)
     ('t', 1.59, 'f', 'Lager', 't', 't'),
     ('t', 1.59, 'f', 'IPA', 't', 't'),
     ('t', 1.59, 't', 'Cider', 't', 't');
+
+INSERT INTO customer(firstName, lastName, emailAddress, numberOfOrders)
+    VALUES
+    ('Alessandra', 'James', 'alessandrajames@hotmail.co.uk', 0),
+    ('Josh', 'Seale', 'josh.seale@outlook.co.uk', 0);

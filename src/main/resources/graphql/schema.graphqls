@@ -1,21 +1,31 @@
 type Query {
+    ## Pizzas
     getPizzas: [Pizza]
     getPizzasByName(name: String!): [Pizza]
     getPizzasByNameIn(names: [String]!): [Pizza]
     getPizzasByIngredients(ingredients: [String]!): [Pizza]
     getCalculation(pizzaCalculatorInput: PizzaCalculatorInput!): PizzaCalculatorOutput
+    ## Ingredients
     getIngredients: [Ingredient]
     getIngredientsByName(name: String): [Ingredient]
     getIngredientsByVegetarian(vegetarian: Boolean!): [Ingredient]
     getIngredientsByVegan(vegan: Boolean!): [Ingredient]
+    ## Drinks
     getDrinks: [Drink]
     getDrinkByName(name: String!): Drink
     getDrinksByAlcoholic(alcoholic: Boolean!): [Drink]
+    ## Orders
     getOrders: [Order]
-    getOrdersById: [Order]
+    getOrdersById(id: Int!): [Order]
     getOrdersByCustomerName(name: String!): [Order]
     getOrdersByCustomerNames(names: [String]!): [Order]
-
+    ## Customers
+    getCustomers: [Customer]
+    getCustomerByCustomerId(id: Int!): [Customer]
+    getCustomerByFirstName(firstName: String!): [Customer]
+    getCustomerByLastName(lastName: String!): [Customer]
+    getCustomerByEmailAddress(emailAddress: String!): [Customer]
+    getCustomerByFullName(fullName: String!): [Customer]
 }
 
 type Mutation {
@@ -23,8 +33,10 @@ type Mutation {
     createPizza(pizzaInput: PizzaInput!): Pizza
     createDrink(drinkInput: DrinkInput!): Drink
     createOrder(orderInput: OrderInput!): Order
+    createCustomer(customerInput: CustomerInput!): Customer
 }
 
+## Pizza
 type Pizza {
     id: ID
     name: String!
@@ -41,6 +53,7 @@ input PizzaInput {
     ingredients: [String]!
 }
 
+## Ingredient
 type Ingredient {
     id: ID
     name: String!
@@ -58,6 +71,7 @@ input IngredientInput {
     vegan: Boolean!
 }
 
+## Drink
 type Drink {
     id: ID
     name: String!
@@ -77,10 +91,11 @@ input DrinkInput {
     alcoholic: Boolean!
 }
 
+## Order
 type Order {
     id: Int
     timestamp: String
-    customerName: String
+    customerId: Int
     pizzas: [String]
     drinks: [String]
     cost: Float
@@ -91,11 +106,12 @@ type Order {
 }
 
 input OrderInput {
-    customerName: String!
+    customer: CustomerInput!
     pizzas: [String]
     drinks: [String]
 }
 
+## Pizza Calculator
 type PizzaCalculatorOutput {
     totalMass: Int!
     flour: Int!
@@ -109,4 +125,18 @@ input PizzaCalculatorInput {
     saltPercentage: Float!
     doughMass: Int!
     numberDoughBalls: Int!
+}
+
+## Customer
+type Customer {
+    firstName: String!
+    lastName: String!
+    emailAddress: String!
+    numberOfOrders: Int
+}
+
+input CustomerInput {
+    firstName: String!
+    lastName: String!
+    emailAddress: String!
 }
