@@ -47,7 +47,7 @@ public class OrderController {
     }
 
     @QueryMapping
-    public Optional<Order> getOrdersById(int id) {
+    public Optional<Order> getOrdersById(@Argument int id) {
         return orderRepo.findById(id);
     }
 

@@ -21,7 +21,7 @@ type Query {
     getOrdersByCustomerNames(names: [String]!): [Order]
     ## Customers
     getCustomers: [Customer]
-    getCustomerByCustomerId(id: Int!): [Customer]
+    getCustomerByCustomerId(id: ID!): [Customer]
     getCustomerByFirstName(firstName: String!): [Customer]
     getCustomerByLastName(lastName: String!): [Customer]
     getCustomerByEmailAddress(emailAddress: String!): [Customer]
@@ -33,7 +33,7 @@ type Mutation {
     createPizza(pizzaInput: PizzaInput!): Pizza
     createDrink(drinkInput: DrinkInput!): Drink
     createOrder(orderInput: OrderInput!): Order
-    createCustomer(customerInput: CustomerInput!): Customer
+    newCustomer(customerInput: CustomerInput!): Customer
 }
 
 ## Pizza
@@ -93,7 +93,7 @@ input DrinkInput {
 
 ## Order
 type Order {
-    id: Int
+    id: ID
     timestamp: String
     customerId: Int
     pizzas: [String]
@@ -129,6 +129,7 @@ input PizzaCalculatorInput {
 
 ## Customer
 type Customer {
+    id: ID
     firstName: String!
     lastName: String!
     emailAddress: String!

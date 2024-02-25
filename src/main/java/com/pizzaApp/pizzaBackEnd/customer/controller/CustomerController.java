@@ -30,27 +30,27 @@ public class CustomerController {
     }
 
     @QueryMapping
-    public Optional<Customer> getCustomerByCustomerId(Integer customerID) {
+    public Optional<Customer> getCustomerByCustomerId(@Argument Integer customerID) {
         return customerRepo.findById(customerID);
     }
 
     @QueryMapping
-    public List<Customer> getCustomerByFirstName(String firstName) {
+    public List<Customer> getCustomerByFirstName(@Argument String firstName) {
         return customerRepo.findByFirstName(firstName);
     }
 
     @QueryMapping
-    public List<Customer> getCustomerByLastName(String lastName) {
+    public List<Customer> getCustomerByLastName(@Argument String lastName) {
         return customerRepo.findByLastName(lastName);
     }
 
     @QueryMapping
-    public List<Customer> getCustomerByEmailAddress(String emailAddress) {
+    public List<Customer> getCustomerByEmailAddress(@Argument String emailAddress) {
         return customerRepo.findByEmailAddress(emailAddress);
     }
 
     @QueryMapping
-    public List<Customer> getCustomerByFullName(String fullName) {
+    public List<Customer> getCustomerByFullName(@Argument String fullName) {
         return customerRepo.findByFullName(fullName);
     }
 

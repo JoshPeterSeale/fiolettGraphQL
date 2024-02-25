@@ -18,7 +18,7 @@ INSERT INTO drinks(alcoholic, cost, gluten_free, name, vegetarian, vegan)
     ('t', 1.59, 'f', 'IPA', 't', 't'),
     ('t', 1.59, 't', 'Cider', 't', 't');
 
-INSERT INTO customer(firstName, lastName, emailAddress, numberOfOrders)
+INSERT INTO customer(first_name, last_name, email_address, number_of_orders)
     VALUES
     ('Alessandra', 'James', 'alessandrajames@hotmail.co.uk', 0),
     ('Josh', 'Seale', 'josh.seale@outlook.co.uk', 0);
